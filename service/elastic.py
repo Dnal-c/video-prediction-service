@@ -18,8 +18,8 @@ class ElasticService:
             'description_ru': data['description_ru'],
             'description_ru_vector': data['description_ru_embedding'],
             'link': data['link'],
-            'voice_vector': str(data['text_embedding'] or ''),
-            'tags_vector': str(data['tags_embedding'] or ''),
+            'voice_vector': data['text_embedding'],
+            'tags_vector': data['tags_embedding'],
             'tags': str(data['tags'] or None),
             'voice': str(data['text'] or None),
             'summary': str(data['short_description_ru'] or None)
