@@ -35,7 +35,7 @@ def predict(link, description):
     enrich_result['text'] = speech_text
 
     embedding_function = global_context.embeddings_service.calc
-    enrich_result['text_embedding'] = str(embedding_function(speech_text))
-    enrich_result['description_ru_embedding'] = str(embedding_function(speech_text))
-    enrich_result['tags_embedding'] = str(embedding_function(tags))
+    enrich_result['text_embedding'] = embedding_function(speech_text)
+    enrich_result['description_ru_embedding'] = embedding_function(speech_text)
+    enrich_result['tags_embedding'] = embedding_function(tags)
     return enrich_result
