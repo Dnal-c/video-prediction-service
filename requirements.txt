@@ -16,3 +16,4 @@ googletrans~=4.0.0-rc1
 translators~=5.9.2
 ImageHash~=4.3.1
 numpy~=1.26.4
+elasticsearch~=8.14.0
