@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Response, UploadFile, status, File, Header, Body, Depends
 
+import global_context
 from global_env import POSSIBLE_FILE_SIZE
 from service.minio_client import upload_file
 from pydantic import BaseModel
@@ -43,8 +44,9 @@ async def upload(options: Options = Depends(), file_data: UploadFile = File(...)
 
     # TODO сюда код сохранения предикшнов в эластик, пример того, как выглдит дескрипшн сейчас ниже. Код, где собирается в таком виде - predict_by_video.predict
     '''
-    
     '''
+    global_context.elastic_service.save_prediction(predictions)
+
     return predictions
 
 

@@ -1,8 +1,9 @@
 from transformers import GPT2TokenizerFast, ViTImageProcessor, AutoTokenizer, AutoModelForSeq2SeqLM, \
     VisionEncoderDecoderModel
 
-from service.embeddings_service import EmbeddingService
 from global_env import MODEL_CAPTION_PATH, DEVICE, MODEL_TRANSLATOR_PATH
+from service.elastic import ElasticService
+from service.embeddings_service import EmbeddingService
 
 image_captioner = VisionEncoderDecoderModel.from_pretrained(MODEL_CAPTION_PATH).to(DEVICE)
 image_captioner_encoder_model = "microsoft/swin-base-patch4-window7-224-in22k"
@@ -14,4 +15,4 @@ translator_tokenizer = AutoTokenizer.from_pretrained(MODEL_TRANSLATOR_PATH)
 translator_model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_TRANSLATOR_PATH).to(DEVICE)
 
 embeddings_service = EmbeddingService()
-
+elastic_service = ElasticService()
