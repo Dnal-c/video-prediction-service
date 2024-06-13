@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from controller.file_endpoints import router as endpoints
 
 app = FastAPI()

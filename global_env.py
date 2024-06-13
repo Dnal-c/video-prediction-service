@@ -1,4 +1,7 @@
 import torch
+from dotenv import load_dotenv
+
+load_dotenv()
 
 MINIO_URL = '87.242.93.110:9000'
 MINIO_BUCKET = 'our-bucket'
@@ -11,11 +14,11 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 WHISPER_COMPUTE_TYPE = "int8" if DEVICE == "gpu" else "float32"
 
 
-BASE_DIR_PATH = '/Users/dandi/PycharmProjects/etl-process/'
+BASE_DIR_PATH = '/Users/apple/Documents/projects/hackaton-lct-2024/video-prediction-service'
 MODEL_CAPTION_PATH = BASE_DIR_PATH + '/models/captioning'  # нужен для локальной работы с image captioning
 MODEL_TRANSLATOR_PATH = BASE_DIR_PATH + '/models/translator'  # нужен для локальной работы с automatic speech recogni
 
 
-TEMP_DIRECTORY_PATH = '/Users/dandi/Documents/hack/temp/'  # Параметр, отвечающий за то, куда будем складывать файлы
+TEMP_DIRECTORY_PATH = '/Users/apple/Documents/projects/hackaton-lct-2024/video-prediction-service/images'  # Параметр, отвечающий за то, куда будем складывать файлы
 
 SAVING_FRAMES_PER_SECOND = .25  # Параметр, отвечающий за то, сколько фреймов с видео резать за секунду для обработки
