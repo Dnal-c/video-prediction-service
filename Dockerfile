@@ -21,4 +21,7 @@ ENV PATH="/app/venv/bin:$PATH"
 COPY . .
 COPY --from=builder /app/venv /app/venv
 
+RUN apt-get update && \
+    apt-get install ffmpeg libsm6 libxext6 -y
+
 ENTRYPOINT ["/bin/bash","-c","./startup.sh"]
