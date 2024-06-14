@@ -1,9 +1,24 @@
-FROM python:3.9-slim
+FROM python:3.12 as builder
 
-WORKDIR /code
+ENV PATH="/app/venv/bin:$PATH"
+
+WORKDIR /app
+
+RUN python -m venv /app/venv
+
+COPY requirements.txt .
+
+RUN python -m ensurepip --upgrade && \
+    python -m pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+FROM python:3.12
+
+WORKDIR /app
+
+ENV PATH="/app/venv/bin:$PATH"
 
 COPY . .
+COPY --from=builder /app/venv /app/venv
 
-RUN pip install -r requirements.txt
-
-CMD ["/bin/bash","-c","./startup.sh"]
+ENTRYPOINT ["/bin/bash","-c","./startup.sh"]
