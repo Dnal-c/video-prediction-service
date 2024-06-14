@@ -17,6 +17,8 @@ def recognize_speech(input_video):
 
     segments = result['segments']
     texts = []
+    if segments is None:
+        return ''
     for seg in segments:
         texts.append(seg['text'])
     return ' '.join(texts)

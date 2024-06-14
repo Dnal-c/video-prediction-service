@@ -11,7 +11,7 @@ from image_captioning.video_to_frames import create_temp_directory_with_frames
 
 
 def predict(link, description):
-    tags = description
+    tags = description if description is not None else ''
 
     enrich_result = {
         'link': link,
@@ -31,11 +31,19 @@ def predict(link, description):
     enrich_result.update(image_captioning_result)
     shutil.rmtree(directory_name)
 
-    speech_text = speech_recognition.recognize_speech(link)
-    enrich_result['text'] = speech_text
+    speech_result = speech_recognition.recognize_speech(link)
+    speech_text = speech_result if speech_result is not None else ''
+    enrich_result['voice_text'] = speech_text
 
     embedding_function = global_context.embeddings_service.calc
-    enrich_result['text_embedding'] = str(embedding_function(speech_text))
-    enrich_result['description_ru_embedding'] = str(embedding_function(speech_text))
-    enrich_result['tags_embedding'] = str(embedding_function(tags))
+
+    voice_vector = embedding_function(speech_text)
+    enrich_result['voice_vector'] = voice_vector
+
+    description_ru = image_captioning_result['description_ru']
+    description_ru_vector = embedding_function(description_ru)
+    enrich_result['description_ru_vector'] = description_ru_vector
+
+    tags_vector = embedding_function(tags)
+    enrich_result['tags_vector'] = tags_vector
     return enrich_result
