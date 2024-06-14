@@ -7,9 +7,9 @@ from elasticsearch import Elasticsearch
 class ElasticService:
 
     def __init__(self):
-        host = 'http://87.242.93.110:9200'
-        login = 'elastic'
-        password = 'T86zNAvyHwbAr4S'
+        host = os.environ['ELASTIC_HOST']
+        login = os.environ['ELASTIC_LOGIN']
+        password = os.environ['ELASTIC_PASSWORD']
         print(f'ElasticService host: {host}')
         self.es = Elasticsearch(host, basic_auth=(login, password))
         self.index = 'video-index-3'
