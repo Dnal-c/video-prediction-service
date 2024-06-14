@@ -9,6 +9,6 @@ COPY . .
 
 RUN python3 -m venv /code/venv  && \
     /code/venv/bin/pip install -r /code/requirements.txt && \
-    /code/venv/bin/python3 /code/models/models_to_local.py
+     cd /code/models && /code/venv/bin/python3 models_to_local.py
 
 CMD ["/code/venv/bin/fastapi", "run", "./main.py", "--port", "4200"]
