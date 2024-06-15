@@ -12,7 +12,7 @@ class ElasticService:
         password = os.environ['ELASTIC_PASSWORD']
         print(f'ElasticService host: {host}')
         self.es = Elasticsearch(host, basic_auth=(login, password))
-        self.index = 'video-index-3'
+        self.index = 'video-index'
 
     def save_prediction(self, data: dict):
         description_vector = data['description_ru_vector'] if data['description_ru_vector'] is not None else  np.array([])
