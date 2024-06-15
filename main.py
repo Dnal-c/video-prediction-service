@@ -7,8 +7,8 @@ from controller.file_endpoints_v2 import router as endpoints_v2
 
 app = FastAPI()
 
-app.include_router(endpoints_v1)
 app.include_router(endpoints_v2)
+app.include_router(endpoints_v1)
 
 app.add_middleware(
     CORSMiddleware,

@@ -12,10 +12,10 @@ SUPPORTED_FILE_TYPES = {
     'application/pdf': 'pdf'
 }
 
-router = APIRouter(prefix='/api/v1', tags=['Предсказание по видео. Версия для работы с File'])
+router = APIRouter(tags=['Предсказание по видео. Версия для работы с File'])
 
 
-@router.post('/calculate-predict-by-file')
+@router.post('/predict-by-file')
 async def predict(description: str = Form(...), file_data: UploadFile = File(...)):
     link = upload_file_to_minio(file_data)
 

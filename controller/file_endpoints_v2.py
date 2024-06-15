@@ -6,7 +6,7 @@ import global_context
 from predict import predict_by_video
 from controller.common import validate_link, predictions_to_response
 
-router = APIRouter(prefix='/api/v2', tags=['Предсказание по видео. Версия для работы с link'])
+router = APIRouter(tags=['Предсказание по видео. Версия для работы с link'])
 
 
 class LinkRequest(BaseModel):
@@ -14,7 +14,7 @@ class LinkRequest(BaseModel):
     description: str | None = None
 
 
-@router.post('/calculate-predict-by-link')
+@router.post('/index')
 async def predict(request: LinkRequest):
     link = request.link
     validate_link(link)
